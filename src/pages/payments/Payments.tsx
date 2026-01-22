@@ -18,8 +18,6 @@ export const Payments = ({ filters, onPageChange }: PaymentsProps) => {
     return <ErrorBox role="alert">{result.error.message}</ErrorBox>;
   }
 
-  console.log(result);
-
   return (
     <DataTable
       data={result.payments}
