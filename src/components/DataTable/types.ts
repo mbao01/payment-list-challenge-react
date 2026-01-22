@@ -18,4 +18,5 @@ export type DataTableSkeletonProps<TData> = Pick<
 
 export type DataTablePaginationProps = {
   page: number;
+  onPageChange: (page: number) => void;
 };
