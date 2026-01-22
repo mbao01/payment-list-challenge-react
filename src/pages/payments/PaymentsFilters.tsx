@@ -8,6 +8,7 @@ import { I18N } from "@/constants/i18n";
 import { ChangeEventHandler, useState } from "react";
 import type { PaymentFilter } from "@/types/payment";
 import type { PaymentsFiltersProps } from "./types";
+import { hasActiveFilter } from "@/utilities/filters/hasActiveFilter";
 
 export const PaymentsFilters = ({
   onFilter,
@@ -18,6 +19,9 @@ export const PaymentsFilters = ({
     ...initialFilters,
     ...defaultValues,
   });
+  const [isFilterActive, setIsFilterActive] = useState(
+    hasActiveFilter(defaultValues),
+  );
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
@@ -26,11 +30,13 @@ export const PaymentsFilters = ({
 
   const handleFilter = () => {
     onFilter(filters);
+    setIsFilterActive(hasActiveFilter(filters));
   };
 
   const handleClearFilter = () => {
     setFilters(initialFilters);
     onFilter(initialFilters);
+    setIsFilterActive(false);
   };
 
   return (
@@ -46,9 +52,11 @@ export const PaymentsFilters = ({
       <SearchButton type="button" onClick={handleFilter}>
         {I18N.SEARCH_BUTTON}
       </SearchButton>
-      <ClearButton type="button" onClick={handleClearFilter}>
-        {I18N.CLEAR_FILTERS}
-      </ClearButton>
+      {isFilterActive && (
+        <ClearButton type="button" onClick={handleClearFilter}>
+          {I18N.CLEAR_FILTERS}
+        </ClearButton>
+      )}
     </FilterRow>
   );
 };
