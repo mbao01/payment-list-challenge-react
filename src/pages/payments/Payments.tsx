@@ -1,18 +1,20 @@
+import type { PaymentFilter } from "@/types/payment";
 import { DataTable } from "@/components/DataTable";
+import { ErrorBox } from "@/components/ui";
+import { isErrorResult } from "@/utilities/errors/isErrorResult";
 import { useGetPayments } from "../../hooks/useGetPayments";
 import { PAYMENTS_COLUMNS } from "./columns";
-import { PaymentsFilters } from "./PaymentsFilters";
-import { useState } from "react";
-import { PaymentFilter } from "@/types/payment";
 
-export const Payments = () => {
-  const [filters, setFilters] = useState<Partial<PaymentFilter>>({});
-  const { payments } = useGetPayments(filters);
+type PaymentsProps = {
+  filters: Partial<PaymentFilter>;
+};
 
-  return (
-    <>
-      <PaymentsFilters onFilter={(filters) => setFilters(filters)} />
-      <DataTable data={payments} columns={PAYMENTS_COLUMNS} />
-    </>
-  );
+export const Payments = ({ filters }: PaymentsProps) => {
+  const result = useGetPayments(filters);
+
+  if (isErrorResult(result)) {
+    return <ErrorBox role="alert">{result.error.message}</ErrorBox>;
+  }
+
+  return <DataTable data={result.payments} columns={PAYMENTS_COLUMNS} />;
 };
