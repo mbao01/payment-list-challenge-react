@@ -28,6 +28,7 @@ export const PaymentsFilters = ({
         value={filters.search}
         onChange={handleInputChange}
         placeholder={I18N.SEARCH_PLACEHOLDER}
+        aria-label={I18N.SEARCH_LABEL}
       />
       <SearchButton type="button" onClick={handleFilter}>
         {I18N.SEARCH_BUTTON}
