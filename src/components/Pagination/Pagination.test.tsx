@@ -44,6 +44,26 @@ describe("Pagination", () => {
     expect(previousButton).toBeDisabled();
   });
 
+  it("should disable Previous and Next buttons when current page is greater than total pages", () => {
+    const onPageChange = vi.fn();
+    render(
+      <Pagination
+        page={3}
+        totalItems={10}
+        pageSize={5}
+        onPageChange={onPageChange}
+      />,
+    );
+
+    const previousButton = screen.getByRole("button", {
+      name: I18N.PREVIOUS_BUTTON,
+    });
+    const nextButton = screen.getByRole("button", { name: I18N.NEXT_BUTTON });
+
+    expect(previousButton).toBeDisabled();
+    expect(nextButton).toBeDisabled();
+  });
+
   it("should enable Previous button when not on first page", () => {
     const onPageChange = vi.fn();
     render(
@@ -84,8 +104,8 @@ describe("Pagination", () => {
     render(
       <Pagination
         page={3}
-        totalItems={10}
-        pageSize={5}
+        totalItems={21}
+        pageSize={6}
         onPageChange={onPageChange}
       />,
     );

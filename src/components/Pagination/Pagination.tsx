@@ -9,7 +9,7 @@ export const Pagination = ({
   onPageChange,
 }: PaginationProps) => {
   const totalPages = Math.ceil(totalItems / pageSize);
-  const hasNoPage = totalPages === 0;
+  const hasNoPage = totalPages === 0 || totalPages < page;
   const isFirstPage = page === 1 || hasNoPage;
   const isLastPage = page === totalPages || hasNoPage;
   const previousPage = Math.max(1, page - 1);
