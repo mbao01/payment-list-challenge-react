@@ -3,6 +3,7 @@ import type { Payment } from "@/types/payment";
 import { StatusBadge } from "@/components/ui";
 import { formatDate } from "@/utilities/dates";
 import { I18N } from "@/constants/i18n";
+import { formatNumber } from "@/utilities/numbers";
 
 const paymentColumnHelper = createColumnHelper<Payment>();
 
@@ -25,7 +26,10 @@ export const getpaymentsColumn = () => [
     header: I18N.TABLE_HEADER_AMOUNT,
     cell: (info) => {
       const amount = info.getValue();
-      return amount;
+      return formatNumber(amount, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
     },
   }),
   paymentColumnHelper.accessor("customerName", {
