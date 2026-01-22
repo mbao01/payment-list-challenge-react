@@ -33,7 +33,7 @@ describe("handleApiError", () => {
     const result = await handleApiError(mockResponse);
 
     expect(result).toEqual({
-      message: errorMessage,
+      message: I18N.INTERNAL_SERVER_ERROR,
     });
   });
 
