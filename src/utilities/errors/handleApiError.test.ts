@@ -46,7 +46,7 @@ describe("handleApiError", () => {
     const result = await handleApiError(mockResponse);
 
     expect(result).toEqual({
-      message: "An unexpected error occurred",
+      message: I18N.SOMETHING_WENT_WRONG,
     });
   });
 
@@ -54,7 +54,7 @@ describe("handleApiError", () => {
     const result = await handleApiError("some random error");
 
     expect(result).toEqual({
-      message: "An unexpected error occurred",
+      message: I18N.SOMETHING_WENT_WRONG,
     });
   });
 });

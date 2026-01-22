@@ -21,7 +21,7 @@ export const handleApiError = async (error: unknown): Promise<ApiError> => {
     throw error;
   } catch (error) {
     return {
-      message: "An unexpected error occurred",
+      message: I18N.SOMETHING_WENT_WRONG,
     };
   }
 };
