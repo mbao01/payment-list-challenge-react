@@ -175,17 +175,21 @@ describe("App - Step 5: Handle Server Error", () => {
 });
 
 describe("App - Step 6: Currency Filter", () => {
-  test("should have a currency filter dropdown", () => {
+  test("should have a currency filter dropdown", async () => {
     render(<App />);
 
-    const currencySelect = screen.getByRole("combobox", { name: I18N.CURRENCY_FILTER_LABEL });
+    const currencySelect = await screen.findByRole("combobox", {
+      name: I18N.CURRENCY_FILTER_LABEL,
+    });
     expect(currencySelect).toBeInTheDocument();
   });
 
   test("should filter payments by currency when selected", async () => {
     render(<App />);
 
-    const currencySelect = screen.getByRole("combobox", { name: I18N.CURRENCY_FILTER_LABEL });
+    const currencySelect = await screen.findByRole("combobox", {
+      name: I18N.CURRENCY_FILTER_LABEL,
+    });
 
     fireEvent.change(currencySelect, { target: { value: "USD" } });
 
