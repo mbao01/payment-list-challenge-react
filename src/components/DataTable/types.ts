@@ -15,3 +15,7 @@ export type DataTableSkeletonProps<TData> = Pick<
   cells: ReactNode[];
   noOfRows: number;
 };
+
+export type DataTablePaginationProps = {
+  page: number;
+};
