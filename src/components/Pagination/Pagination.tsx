@@ -1,12 +1,9 @@
 import { useState } from "react";
-import { type DataTablePaginationProps } from "./types";
 import { PaginationButton, PaginationRow } from "../ui";
+import type { PaginationProps } from "./types";
 import { I18N } from "@/constants/i18n";
 
-export const DataTablePagination = ({
-  page,
-  onPageChange,
-}: DataTablePaginationProps) => {
+export const Pagination = ({ page, onPageChange }: PaginationProps) => {
   const [inputPage, setInputPage] = useState<number>(page ? Number(page) : 1);
 
   const isFirstPage = inputPage === 1;
