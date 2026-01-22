@@ -157,8 +157,8 @@ export const StatusBadge = styled.span<{ status: string }>`
     props.status === "completed"
       ? `background-color: #d1fae5; color: #15803d;`
       : props.status === "pending"
-      ? `background-color: #fef3c7; color: #92400e;`
-      : `background-color: #fee2e2; color: #b91c1c;`}
+        ? `background-color: #fef3c7; color: #92400e;`
+        : `background-color: #fee2e2; color: #b91c1c;`}
 `;
 
 export const Spinner = styled.div`
@@ -229,4 +229,42 @@ export const TableHeaderRow = styled.tr`
 
 export const TableBodyWrapper = styled.tbody`
   background-color: white;
+`;
+
+type Rem = number;
+export const Shimmer = styled.div<
+  Partial<{
+    width: Rem;
+    height: Rem;
+    round: boolean;
+  }>
+>`
+  background-color: #f3f4f6;
+  will-change: background-position;
+  background-image: linear-gradient(
+    105deg,
+    #0000 0% 40%,
+    #f9fafb 50%,
+    #0000 60% 100%
+  );
+  background-position-x: -50%;
+  background-size: 200%;
+  border-radius: 0.375rem;
+  width: ${(props) => `${props.width ?? 8}rem`};
+  height: ${(props) => `${props.height ?? 1.25}rem`};
+  ${(props) => props.round && "border-radius: 50%;"}
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: 1.8s ease-in-out infinite shimmer;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 150%;
+    }
+
+    100% {
+      background-position: -50%;
+    }
+  }
 `;
