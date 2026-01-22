@@ -31,7 +31,7 @@ export const handlers = [
     const search = url.searchParams.get("search")?.toLowerCase() || "";
     const currency = url.searchParams.get("currency") || "";
     const page = parseInt(url.searchParams.get("page") || "1", 10);
-    const pageSize = parseInt(url.searchParams.get("pageSize") || "10", 10);
+    const pageSize = parseInt(url.searchParams.get("pageSize") || "5", 10);
 
     if (search === "pay_404") {
       return HttpResponse.json(
