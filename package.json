@@ -25,6 +25,7 @@
     "@tanstack/react-table": "^8.21.3",
     "axios": "^1.10.0",
     "date-fns": "^4.1.0",
+    "http-status-codes": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.18"
