@@ -1,10 +1,11 @@
 import type { PaymentFilter } from "@/types/payment";
 import { DataTable } from "@/components/DataTable";
-import { ErrorBox } from "@/components/ui";
+import { ErrorBox, FlexRow } from "@/components/ui";
 import { isErrorResult } from "@/utilities/errors/isErrorResult";
 import { useGetPayments } from "../../hooks/useGetPayments";
 import { PAYMENTS_COLUMNS } from "./columns";
 import { Pagination } from "@/components/Pagination";
+import { I18N } from "@/constants/i18n";
 
 type PaymentsProps = {
   filters: Partial<PaymentFilter>;
@@ -22,6 +23,7 @@ export const Payments = ({ filters, onPageChange }: PaymentsProps) => {
     <DataTable
       data={result.payments}
       columns={PAYMENTS_COLUMNS}
+      noResult={<FlexRow center>{I18N.NO_PAYMENTS_FOUND}</FlexRow>}
       footer={
         <Pagination
           page={result.page}
