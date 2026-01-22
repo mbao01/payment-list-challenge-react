@@ -6,6 +6,7 @@ export type DataTableProps<TData> = Pick<
   "data" | "columns"
 > & {
   noResult?: ReactNode;
+  footer?: ReactNode;
 };
 
 export type DataTableSkeletonProps<TData> = Pick<

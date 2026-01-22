@@ -18,6 +18,7 @@ import type { DataTableProps } from "./types";
 export function DataTable<TData>({
   data,
   columns,
+  footer,
   noResult,
 }: DataTableProps<TData>) {
   const table = useReactTable({
@@ -62,6 +63,13 @@ export function DataTable<TData>({
             </TableRow>
           )}
         </TableBodyWrapper>
+        {footer && (
+          <tfoot>
+            <tr>
+              <td colSpan={columns.length}>{footer}</td>
+            </tr>
+          </tfoot>
+        )}
       </Table>
     </TableWrapper>
   );
