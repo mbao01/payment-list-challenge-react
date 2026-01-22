@@ -57,12 +57,12 @@ export const formattedDate = (date: string) => {
   return format(new Date(date), "dd/MM/yyyy, HH:mm:ss")
 };
 
-export const getSearchInput = () => {
+export const getSearchInput = async () => {
   // Try to find by placeholder first, then by role with name
   try {
-    return screen.getByPlaceholderText(I18N.SEARCH_PLACEHOLDER);
+    return await screen.findByPlaceholderText(I18N.SEARCH_PLACEHOLDER);
   } catch {
-    return screen.getByRole("searchbox", { name: I18N.SEARCH_LABEL });
+    return await screen.findByRole("searchbox", { name: I18N.SEARCH_LABEL });
   }
 };
 
@@ -95,10 +95,10 @@ describe("App - Step 1: Basic Payment List", () => {
 });
 
 describe("App - Step 2: Search by Payment ID", () => {
-  test("should have a search input for payment ID", () => {
+  test("should have a search input for payment ID", async () => {
     render(<App />);
 
-    const searchInput = getSearchInput();
+    const searchInput = await getSearchInput();
     expect(searchInput).toBeInTheDocument();
     expect(searchInput).toHaveAttribute("placeholder", I18N.SEARCH_PLACEHOLDER);
   });
@@ -106,7 +106,7 @@ describe("App - Step 2: Search by Payment ID", () => {
   test("should search for payments by payment ID", async () => {
     render(<App />);
 
-    const searchInput = getSearchInput();
+    const searchInput = await getSearchInput();
     const searchButton = screen.getByRole("button", { name: I18N.SEARCH_BUTTON });
 
     fireEvent.change(searchInput, { target: { value: "pay_134_1" } });
@@ -122,7 +122,7 @@ describe("App - Step 3: Clear Filters", () => {
   test("should clear all filters when clear button is clicked", async () => {
     render(<App />);
 
-    const searchInput = getSearchInput();
+    const searchInput = await getSearchInput();
     const searchButton = screen.getByRole("button", { name: I18N.SEARCH_BUTTON });
 
     // Perform a search
@@ -146,7 +146,7 @@ describe("App - Step 4: Handle Payment Not Found", () => {
   test("should display error message when payment ID is not found", async () => {
     render(<App />);
 
-    const searchInput = getSearchInput();
+    const searchInput = await getSearchInput();
     const searchButton = screen.getByRole("button", { name: I18N.SEARCH_BUTTON });
 
     fireEvent.change(searchInput, { target: { value: "pay_404" } });
@@ -160,7 +160,7 @@ describe("App - Step 5: Handle Server Error", () => {
   test("should display error message when API returns 500", async () => {
     render(<App />);
 
-    const searchInput = getSearchInput();
+    const searchInput = await getSearchInput();
     const searchButton = screen.getByRole("button", { name: I18N.SEARCH_BUTTON });
 
     fireEvent.change(searchInput, { target: { value: "pay_500" } });
@@ -196,7 +196,7 @@ describe("App - Step 7: Combined Currency and Payment ID Filter", () => {
   test("should filter by both currency and payment ID", async () => {
     render(<App />);
 
-    const searchInput = getSearchInput();
+    const searchInput = await getSearchInput();
     const searchButton = screen.getByRole("button", { name: I18N.SEARCH_BUTTON });
     const currencySelect = screen.getByRole("combobox", { name: I18N.CURRENCY_FILTER_LABEL });
 

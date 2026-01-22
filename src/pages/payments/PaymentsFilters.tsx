@@ -25,6 +25,7 @@ export const PaymentsFilters = ({
     <FilterRow>
       <SearchInput
         name="search"
+        role="searchbox"
         value={filters.search}
         onChange={handleInputChange}
         placeholder={I18N.SEARCH_PLACEHOLDER}
