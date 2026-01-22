@@ -5,7 +5,7 @@ export const formatDate = (
   date: Date | string | null | undefined,
   dateFormat = "dd/MM/yyyy, HH:mm:ss",
 ) => {
-  if (!(date && isValid(date))) return null;
+  if (!(date && isValid(new Date(date)))) return null;
 
-  return format(date, dateFormat);
+  return format(new Date(date), dateFormat);
 };

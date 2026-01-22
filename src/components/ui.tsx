@@ -247,6 +247,7 @@ export const Shimmer = styled.div<
     #f9fafb 50%,
     #0000 60% 100%
   );
+  margin: 0.5px;
   background-position-x: -50%;
   background-size: 200%;
   border-radius: 0.375rem;
