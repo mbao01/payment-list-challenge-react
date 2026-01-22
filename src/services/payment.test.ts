@@ -63,6 +63,7 @@ describe("getPaymentsService", () => {
 
     it("should filter payments by currency", async () => {
       const result = (await getPaymentsService({
+        search: "",
         currency: "USD",
       })) as PaymentsResponse;
 

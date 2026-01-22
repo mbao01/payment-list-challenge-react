@@ -6,7 +6,15 @@ type GetPaymentsServiceArgs = PaymentFilter;
 
 export const getPaymentsService = async (params?: GetPaymentsServiceArgs) => {
   try {
-    const searchParams = new URLSearchParams(params as Record<string, string>);
+    const searchParams = new URLSearchParams();
+
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== null && value !== undefined && value !== "") {
+          searchParams.set(key, String(value));
+        }
+      });
+    }
 
     const response = await fetch(`${API_URL}?${searchParams}`);
 
