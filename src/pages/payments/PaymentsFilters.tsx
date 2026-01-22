@@ -1,4 +1,9 @@
-import { FilterRow, SearchButton, SearchInput } from "@/components/ui";
+import {
+  ClearButton,
+  FilterRow,
+  SearchButton,
+  SearchInput,
+} from "@/components/ui";
 import { I18N } from "@/constants/i18n";
 import { ChangeEventHandler, useState } from "react";
 import type { PaymentFilter } from "@/types/payment";
@@ -8,9 +13,11 @@ export const PaymentsFilters = ({
   onFilter,
   defaultValues,
 }: PaymentsFiltersProps) => {
-  const [filters, setFilters] = useState<Partial<PaymentFilter>>(
-    defaultValues ?? {},
-  );
+  const initialFilters = { search: "" };
+  const [filters, setFilters] = useState<Partial<PaymentFilter>>({
+    ...initialFilters,
+    ...defaultValues,
+  });
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
@@ -19,6 +26,11 @@ export const PaymentsFilters = ({
 
   const handleFilter = () => {
     onFilter(filters);
+  };
+
+  const handleClearFilter = () => {
+    setFilters(initialFilters);
+    onFilter(initialFilters);
   };
 
   return (
@@ -34,6 +46,9 @@ export const PaymentsFilters = ({
       <SearchButton type="button" onClick={handleFilter}>
         {I18N.SEARCH_BUTTON}
       </SearchButton>
+      <ClearButton type="button" onClick={handleClearFilter}>
+        {I18N.CLEAR_FILTERS}
+      </ClearButton>
     </FilterRow>
   );
 };
