@@ -14,8 +14,9 @@ export const PaymentsPage = () => {
       <Title>{I18N.PAGE_TITLE}</Title>
 
       <PaymentsFilters onFilter={(filters) => setFilters(filters)} />
+
       <Suspense fallback={<PaymentsSkeleton />}>
-        <Payments filters={filters} />
+        <Payments filters={filters} setFilters={setFilters} />
       </Suspense>
     </Container>
   );
