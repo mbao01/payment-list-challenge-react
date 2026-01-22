@@ -11,6 +11,7 @@ export default defineConfig({
     outputFile: {
       junit: "./junit.xml",
     },
+    setupFiles: ["./vitest-setup.ts"],
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],
