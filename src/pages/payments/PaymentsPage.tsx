@@ -15,7 +15,7 @@ export const PaymentsPage = () => {
     search,
     currency,
   }: Pick<PaymentFilter, "search" | "currency">) => {
-    setSearchParams({ search, currency });
+    setSearchParams({ search, currency, page: 1 });
   };
 
   const handlePage = (page: number) => {
