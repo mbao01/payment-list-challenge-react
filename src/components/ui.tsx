@@ -14,16 +14,22 @@ export const Title = styled.h2`
   margin-bottom: 1.5rem;
 `;
 
-export const FlexRow = styled.div`
+export const FlexRow = styled.div<{ center?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  width: 100%;
+
+  ${(props) => props.center && "align-items: center;"}
 
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    ${(props) => props.center && "justify-content: center;"}
   }
 `;
 

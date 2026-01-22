@@ -90,7 +90,7 @@ describe("App - Step 1: Basic Payment List", () => {
 
     // Check that 5 payments are displayed (pageSize=5)
     const tableRows = screen.getAllByRole("row");
-    expect(tableRows).toHaveLength(6); // 1 header row + 5 data rows
+    expect(tableRows).toHaveLength(7); // 1 header row + 5 data rows + 1 footer row
   });
 });
 

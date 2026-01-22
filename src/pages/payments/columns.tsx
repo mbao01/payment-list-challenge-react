@@ -32,14 +32,14 @@ export const getpaymentsColumn = () => [
     header: I18N.TABLE_HEADER_CUSTOMER,
     cell: (info) => {
       const customerName = info.getValue();
-      return customerName;
+      return customerName || I18N.EMPTY_CUSTOMER;
     },
   }),
   paymentColumnHelper.accessor("currency", {
     header: I18N.TABLE_HEADER_CURRENCY,
     cell: (info) => {
       const currency = info.getValue();
-      return currency;
+      return currency || I18N.EMPTY_CURRENCY;
     },
   }),
   paymentColumnHelper.accessor("status", {
