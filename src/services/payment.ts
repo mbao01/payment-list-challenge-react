@@ -1,7 +1,7 @@
 import { API_URL } from "@/constants";
 import type { PaymentFilter } from "@/types/payment";
 
-type GetPaymentsServiceArgs = Partial<PaymentFilter>;
+type GetPaymentsServiceArgs = PaymentFilter;
 
 export const getPaymentsService = async (params?: GetPaymentsServiceArgs) => {
   const searchParams = new URLSearchParams(params as Record<string, string>);

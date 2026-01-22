@@ -1,6 +1,7 @@
 import { I18N } from "./constants/i18n";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { lazy, Suspense } from "react";
+import { Container, Shimmer } from "./components/ui";
 
 const PaymentsPage = lazy(() => import("./pages/payments"));
 
@@ -27,7 +28,13 @@ function App() {
           </div>
         </header>
         <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <Suspense fallback={<>Loading...</>}>
+          <Suspense
+            fallback={
+              <Container>
+                <Shimmer />
+              </Container>
+            }
+          >
             <PaymentsPage />
           </Suspense>
         </main>

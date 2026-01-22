@@ -1,11 +1,11 @@
 import type { ISODateString } from "./date";
 
-export type PaymentFilter = {
+export type PaymentFilter = Partial<{
   search: string;
   currency: string;
   page: number;
   pageSize: number;
-};
+}>;
 
 type PaymentCurrency =
   | "AUD"

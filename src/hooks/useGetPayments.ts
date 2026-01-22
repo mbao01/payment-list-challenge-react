@@ -2,7 +2,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { getPaymentsService } from "@/services/payment";
 import type { PaymentFilter, PaymentsResponse } from "@/types/payment";
 
-type UseGetPaymentsArgs = Partial<PaymentFilter>;
+type UseGetPaymentsArgs = PaymentFilter;
 
 export const useGetPayments = (params?: UseGetPaymentsArgs) => {
   const queryKey = ["payments", params] as const;
