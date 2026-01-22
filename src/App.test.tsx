@@ -134,11 +134,15 @@ describe("App - Step 3: Clear Filters", () => {
     });
 
     // Clear filters
-    const clearButton = screen.getByRole("button", { name: I18N.CLEAR_FILTERS });
+    const clearButton = await screen.findByRole("button", {
+      name: I18N.CLEAR_FILTERS,
+    });
     fireEvent.click(clearButton);
 
     // Check that search input is cleared
-    expect(searchInput).toHaveValue("");
+    await waitFor(() => {
+      expect(searchInput).toHaveValue("");
+    });
   });
 });
 
