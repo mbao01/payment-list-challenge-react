@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from "react";
 import type { PaymentFilter } from "@/types/payment";
 import { DataTable } from "@/components/DataTable";
 import { ErrorBox } from "@/components/ui";
@@ -9,15 +8,17 @@ import { Pagination } from "@/components/Pagination";
 
 type PaymentsProps = {
   filters: Partial<PaymentFilter>;
-  setFilters: Dispatch<SetStateAction<Partial<PaymentFilter>>>;
+  onPageChange: (page: number) => void;
 };
 
-export const Payments = ({ filters, setFilters }: PaymentsProps) => {
+export const Payments = ({ filters, onPageChange }: PaymentsProps) => {
   const result = useGetPayments(filters);
 
   if (isErrorResult(result)) {
     return <ErrorBox role="alert">{result.error.message}</ErrorBox>;
   }
+
+  console.log(result);
 
   return (
     <DataTable
@@ -25,8 +26,10 @@ export const Payments = ({ filters, setFilters }: PaymentsProps) => {
       columns={PAYMENTS_COLUMNS}
       footer={
         <Pagination
-          page={filters.page}
-          onPageChange={(page) => setFilters((prev) => ({ ...prev, page }))}
+          page={result.page}
+          totalItems={result.total}
+          pageSize={result.pageSize}
+          onPageChange={onPageChange}
         />
       }
     />
